@@ -1,4 +1,6 @@
 import re
+import os
+import json
 from datetime import datetime
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
@@ -14,9 +16,16 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name(
+'''creds = ServiceAccountCredentials.from_json_keyfile_name(
     "credentials.json", scope
-)
+)'''
+
+#---------------------------------------
+#Added the line for variables
+#------------------------------
+creds_dict = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
+
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
 client = gspread.authorize(creds)
 
@@ -157,7 +166,9 @@ async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # TELEGRAM BOT START
 # -----------------------------
 
-TOKEN = "8620766224:AAH50ZgFDdAFI5JtyoKYtUvRBvoadPILDLM"
+'''TOKEN = "8620766224:AAH50ZgFDdAFI5JtyoKYtUvRBvoadPILDLM"'''
+
+TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 app = ApplicationBuilder().token(TOKEN).build()
 
