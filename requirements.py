@@ -1,3 +1,4 @@
-python-telegram-bot
+python-telegram-bot==20.7
 gspread
 oauth2client
+faster-whisper
