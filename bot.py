@@ -13,7 +13,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # ------------------------------------------------
 # LOAD ENVIRONMENT VARIABLES
 # ------------------------------------------------
-
+#added Token in environment variables
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 GOOGLE_CREDS = os.getenv("GOOGLE_CREDENTIALS")
 SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
