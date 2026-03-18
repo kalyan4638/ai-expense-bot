@@ -17,7 +17,7 @@ pipeline {
                     credentialsId: 'github-creds'
             }
         }*/
-        /*stages are very precious*/
+        
         stage('Checkout') {
             steps {
                 git branch: 'main',
