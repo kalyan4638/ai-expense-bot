@@ -24,6 +24,21 @@ pipeline {
                 url: 'https://github.com/kalyan4638/ai-expense-bot.git'
             }
         }
+         // ✅ NEW STAGE: SonarQube Analysis
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube-server') {
+                    sh """
+                    ${SONAR_SCANNER}/bin/sonar-scanner \
+                    -Dsonar.projectKey=ai-expense-bot \
+                    -Dsonar.projectName=AI-Expense-Bot \
+                    -Dsonar.sources=. \
+                    -Dsonar.language=py \
+                    -Dsonar.sourceEncoding=UTF-8
+                    """
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
